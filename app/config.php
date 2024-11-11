@@ -27,6 +27,9 @@ try {
 date_default_timezone_set("America/Guatemala");
 $ano_actual = date ('Y');
 
-$fecha_hora = 'NOW()';
+$fecha_hora = date ('Y-m-d H:i:s');
+$dia_actual = date ('d');
+$mes_actual = date ('m');
+$ano_actual = date ('Y');
 
 $estado_de_registro = '1';

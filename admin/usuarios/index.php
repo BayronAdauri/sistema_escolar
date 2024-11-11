@@ -3,7 +3,7 @@
 include('../../app/config.php');
 include('../../admin/layout/header.php');
 
-include('../../app/controllers/roles/listado_de_roles.php');
+include('../../app/controllers/usuarios/listado_de_usuarios.php');
 
 ?>
 
@@ -13,16 +13,16 @@ include('../../app/controllers/roles/listado_de_roles.php');
   <div class="content">
     <div class="container">
       <div class="row">
-        <h1>Listado de Roles</h1>
+        <h1>Listado de Usuarios</h1>
       </div><!-- /.col -->
 
       <br> <!------------------------------------  TABLA ---------------------->
       <div class="row">
         <!---------------------------- /.WIDGET ------------------------------------------ -->
-        <div class="col-md-8">
+        <div class="col-md-12">
           <div class="card bg-light">
             <div class="card-header">
-              <h3 class="card-title">Roles registrados</h3>
+              <h3 class="card-title">Usuarios registrados</h3>
 
               <div class="card-tools">
                 <a href="create.php" class="btn btn-primary btn-sm">Crear nuevo</a>
@@ -35,26 +35,34 @@ include('../../app/controllers/roles/listado_de_roles.php');
                 <thead>
                   <tr>
                     <th>No.</th>
-                    <th>Nombre del rol</th>
+                    <th>Nombre de usuario</th>
+                    <th>Rol de usuario</th>
+                    <th>Correo</th>
+                    <th>Fecha de Creacion</th>
+                    <th>Estado</th>
                     <th>Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php
-                  $contador_rol = 0;
-                  foreach ($roles as $rol) {
-                    $id_rol = $rol['idRol'];
-                    $contador_rol = $contador_rol + 1;
+                  $contador_usuarios = 0;
+                  foreach ($usuarios as $usuario) {
+                    $id_usuario = $usuario['id_usuario'];
+                    $contador_usuarios = $contador_usuarios + 1;
                   ?>
                     <tr>
-                      <td style="text-align: center;"><?= $contador_rol; ?></td>
-                      <td><?= $rol['nombre_rol']; ?></td>
+                      <td style="text-align: center;"><?= $contador_usuarios; ?></td>
+                      <td><?= $usuario['nombre']; ?></td>
+                      <td><?= $usuario['nombre_rol']; ?></td>
+                      <td><?= $usuario['email']; ?></td>
+                      <td><?= $usuario['fyhCreacion']; ?></td>
+                      <td><?= $usuario['estado']; ?></td>
                       <td style="text-align: center;">
                         <div class="btn-group" role="group" aria-label="Basic example">
-                          <a href="show.php?id=<?= $id_rol; ?>" type="button" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>
-                          <a href="edit.php?id=<?= $id_rol; ?>" type="button" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></a>
-                          <form action="<?= APP_URL; ?>/app/controllers/roles/delete.php" onclick="preguntar(event)" method="post" id="#miFormulario<?= $id_rol; ?>">
-                            <input type="text" name="id_rol" value="<?= $id_rol; ?>" hidden>
+                          <a href="show.php?id=<?= $id_usuario; ?>" type="button" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>
+                          <a href="edit.php?id=<?= $id_usuario; ?>" type="button" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></a>
+                          <form action="<?= APP_URL; ?>/app/controllers/roles/delete.php" onclick="preguntar(event)" method="post" id="#miFormulario<?= $id_usuario; ?>">
+                            <input type="text" name="id_rol" value="<?= $id_usuario; ?>" hidden>
                             <button type="submit" class="btn btn-danger btn-sm" style="border-radius: 0px 5px 5px 0px"><i class="bi bi-trash"></i></button>
                           </form>
                           <script>
@@ -70,7 +78,7 @@ include('../../app/controllers/roles/listado_de_roles.php');
                                 denyButtonText: 'Cancelar',
                               }).then((result) => {
                                 if (result.isConfirmed) {
-                                  var form = $('#miFormulario<?= $id_rol; ?>');
+                                  var form = $('#miFormulario<?= $id_usuario; ?>');
                                   form.submit();
                                 }
                               });
@@ -110,12 +118,12 @@ include('../../layout/mensajes.php');
       "pageLength": 5,
       "language": {
         "emptyTable": "No hay informacion",
-        "info": "Mostrando _START_ a _END_ de _TOTAL_ Roles",
-        "infoEmpty": "Mostrando 0 a 0 de 0 Roles",
-        "infoFiltered": "(Filtrado de _MAX_ total Roles)",
+        "info": "Mostrando _START_ a _END_ de _TOTAL_ Usuarios",
+        "infoEmpty": "Mostrando 0 a 0 de 0 Usuarios",
+        "infoFiltered": "(Filtrado de _MAX_ total Usuarios)",
         "infoPostFix": "",
         "thousands": ",",
-        "lengthMenu": "Mostrar _MENU_ Roles",
+        "lengthMenu": "Mostrar _MENU_ Usuarios",
         "loadingRecords": "Cargando...",
         "processing": "Procesando...",
         "search": "Buscador:",
